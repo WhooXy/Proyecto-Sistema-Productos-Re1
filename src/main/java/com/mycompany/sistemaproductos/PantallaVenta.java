@@ -5,6 +5,7 @@
 package com.mycompany.sistemaproductos;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -127,7 +128,7 @@ public class PantallaVenta extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Producto", "Cantidad", "Precio", "Subtotal"
+                "Producto", "Cantidad", "Precio Unitario", "Subtotal"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -364,9 +365,10 @@ public class PantallaVenta extends javax.swing.JInternalFrame {
             String sql = "UPDATE productos SET stock = stock - ? WHERE nombre = ?";
             psUpdate = conn.prepareStatement(sql);
             
-            factura.append(String.format("%80s\n", "=== FACTURA ==="))
-                   .append(String.format("%-15s %-12s %-10s %-12s %-12s %-12s\n",
-                "Producto:", "Cantidad:", "Precio:", "Subtotal:", "IVA:", "Total con IVA:"));
+            factura.append(String.format("%55s\n", "------ FACTURA ------"))
+                   .append(String.format("%-15s %10s %14s %14s %14s %14s\n",
+                "Producto", "Cantidad", "Precio", "Subtotal", "IVA", "Total(IVA):"));
+            factura.append("------------------------------------------------------------------------------------\n");
             
             for (int i = 0; i < model.getRowCount(); i++) {
                 // Validar que ninguna celda sea null
@@ -386,10 +388,10 @@ public class PantallaVenta extends javax.swing.JInternalFrame {
                 double iva = subtotal * tasaIVA;
                 double totalConIVA = subtotal + iva;
 
-                factura
-                        .append(String.format("%-15s %12d %11.2f %13.2f %13.2f %13.2f\n",
+                factura.append(String.format("%-15s %10d %14.2f %14.2f %14.2f %14.2f\n",
                             nombre, cantidad, precio, subtotal, iva, totalConIVA));
-                        
+                           
+                            
                 psUpdate.setInt(1, cantidad);
                 psUpdate.setString(2, nombre);
                 psUpdate.executeUpdate();
@@ -402,19 +404,22 @@ public class PantallaVenta extends javax.swing.JInternalFrame {
 
             double totalFinal = totalSinIVA + totalIVA;
             
-            factura.append("========================================================\n");
+            factura.append("------------------------------------------------------------------------------------\n");
             factura.append(String.format("%-37s %-12.2f\n", "TOTAL SIN IVA:", totalSinIVA));
             factura.append(String.format("%-37s %-12.2f\n", "TOTAL IVA:", totalIVA));
             factura.append(String.format("%-37s %-12.2f\n", "TOTAL FINAL:", totalFinal));
+            factura.append("------------------------------------------------------------------------------------\n");
+
 
             System.out.println(factura.toString());
             JOptionPane.showMessageDialog(null, "Venta finalizada con éxito.");
             
             JTextArea textArea = new JTextArea(factura.toString());
+            textArea.setFont(new Font("Consolas",Font.PLAIN,13));
             textArea.setEditable(false);
             textArea.setCaretPosition(0); // Mostrar desde arriba
             JScrollPane scrollPane = new JScrollPane(textArea);
-            scrollPane.setPreferredSize(new Dimension(500, 400)); // Ajusta tamaño si deseas
+            scrollPane.setPreferredSize(new Dimension(650, 400)); 
 
             JOptionPane.showMessageDialog(null, scrollPane, "Factura de Venta", JOptionPane.INFORMATION_MESSAGE);
 

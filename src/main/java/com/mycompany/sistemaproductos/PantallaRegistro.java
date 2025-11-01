@@ -95,7 +95,7 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
         idSeleccionado = -1;      // volvemos a modo insertar
         filaSeleccionada = -1;
         TableDatos.clearSelection();
-        jButton1.setText("Agregar");
+        BtnAgregar.setText("Agregar");
     }
 
     /**
@@ -113,15 +113,14 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
         tfStock = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         tfPrecio = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BtnAgregar = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableDatos = new javax.swing.JTable();
         tfNombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnNuevo = new java.awt.Button();
-        jLabel6 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -141,17 +140,17 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Precio :");
 
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtnAgregar.setText("Agregar");
+        BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnAgregarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Eliminar ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BtnEliminar.setText("Eliminar ");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BtnEliminarActionPerformed(evt);
             }
         });
 
@@ -163,7 +162,7 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Precio", "Stock"
+                "ID", "Nombre", "Precio Unitario", "Stock"
             }
         ));
         TableDatos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,15 +183,12 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
 
         btnNuevo.setBackground(new java.awt.Color(78, 80, 82));
         btnNuevo.setForeground(new java.awt.Color(187, 187, 187));
-        btnNuevo.setLabel("Nuevo");
+        btnNuevo.setLabel("Limpiar");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
             }
         });
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Unidad");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,9 +200,9 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -222,16 +218,14 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
                                     .addComponent(tfNombre)
                                     .addComponent(tfPrecio)
                                     .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(184, 184, 184)
+                                .addGap(248, 248, 248)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(46, 46, 46))
         );
@@ -247,26 +241,25 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(BtnEliminar)
                         .addGap(245, 245, 245))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
+                            .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(tfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
+                            .addComponent(BtnAgregar)
                             .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -274,7 +267,7 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
         // TODO add your handling code here agregar:
 
         String nombre = tfNombre.getText().trim();
@@ -343,9 +336,9 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Error de BD: " + ex.getMessage(),
                     "Base de datos", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BtnAgregarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
         // TODO add your handling code here funcion eliminar :
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecciona un producto de la tabla para eliminar.");
@@ -382,7 +375,7 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
             Logger.getLogger(PantallaRegistro.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "No se pudo conectar a la base de datos");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
@@ -398,7 +391,7 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
             tfPrecio.setText(TableDatos.getValueAt(filaSeleccionada, 2).toString());
             tfStock.setText(TableDatos.getValueAt(filaSeleccionada, 3).toString());
 
-            jButton1.setText("Actualizar");   // feedback al usuario
+            BtnAgregar.setText("Actualizar");   
         }
 
     }//GEN-LAST:event_TableDatosMouseClicked
@@ -409,16 +402,15 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAgregar;
+    private javax.swing.JButton BtnEliminar;
     private javax.swing.JTable TableDatos;
     private java.awt.Button btnNuevo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfPrecio;

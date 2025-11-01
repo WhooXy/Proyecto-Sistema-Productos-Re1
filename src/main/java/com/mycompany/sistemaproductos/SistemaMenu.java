@@ -24,7 +24,8 @@ public class SistemaMenu extends javax.swing.JFrame {
             System.exit(0);
         }
     }
-    //Crea pantallaregistro;2 variables que respresentan mis 2 ventanas internas
+    //Creando 2 variables que respresentan mis 2 ventanas internas
+    
     PantallaRegistro pantallaregistro;
     PantallaVenta pantallaventa;
     
@@ -32,14 +33,9 @@ public class SistemaMenu extends javax.swing.JFrame {
     
     public SistemaMenu() {
         initComponents();
-        
-   
-        
         //Creo un objeto para poder llamar las pantallas
-        
         // Agregar solo UNA vez las ventanas al escritorio mostrando el contenido en la ventana principal
-
-    }
+    }   
 
     /**
      * No modificar este metodo cambia el diseño del form
@@ -157,7 +153,10 @@ public class SistemaMenu extends javax.swing.JFrame {
         }
    
         pantallaventa.setVisible(true); 
-        pantallaregistro.setVisible(false);
+        if (pantallaregistro != null){
+        
+            pantallaregistro.setVisible(false);
+        }
         
 
         
