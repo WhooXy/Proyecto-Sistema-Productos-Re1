@@ -419,7 +419,7 @@ public class PantallaVenta extends javax.swing.JInternalFrame {
             textArea.setEditable(false);
             textArea.setCaretPosition(0); // Mostrar desde arriba
             JScrollPane scrollPane = new JScrollPane(textArea);
-            scrollPane.setPreferredSize(new Dimension(649, 400)); 
+            scrollPane.setPreferredSize(new Dimension(650, 400)); 
 
             JOptionPane.showMessageDialog(null, scrollPane, "Factura de Venta", JOptionPane.INFORMATION_MESSAGE);
 
